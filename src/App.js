@@ -1,13 +1,15 @@
 
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Popular from "./Components/Popular";
+import AnimeItem from "./Components/AnimeItem";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
-        <Popular />
-      </div>
+      <Routes>
+        <Route path="/" element={<Popular />}></Route>
+        <Route path="/anime/:id" element={<AnimeItem />}></Route>
+      </Routes>
     </BrowserRouter>
 
   );
