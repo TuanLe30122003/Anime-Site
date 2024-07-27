@@ -8,7 +8,7 @@ function HomePage() {
 
     const [rendered, setRendered] = useState(false);
 
-    const { handleSubmit, handleChange, search } = useGlobalContext();
+    const { handleSubmit, handleChange, search, getAiringAnime, getUpcomingAnime } = useGlobalContext();
 
     const switchComponent = () => {
         switch (rendered) {
@@ -41,6 +41,19 @@ function HomePage() {
                             <button type="submit">Search</button>
                         </div>
                     </form>
+
+                    <div className="filter-btn airing-filter">
+                        <button onClick={() => {
+                            setRendered('airing')
+                            getAiringAnime()
+                        }}>Airing</button>
+                    </div>
+                    <div className="filter-btn upcoming-filter">
+                        <button onClick={() => {
+                            setRendered('upcoming')
+                            getUpcomingAnime()
+                        }}>Upcoming</button>
+                    </div>
                 </div>
             </header>
         </HomePageStyled>
