@@ -1,19 +1,17 @@
-import React, { useContext } from 'react'
-import { useGlobalContext } from '../context/GlobalContext';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useGlobalContext } from '../context/GlobalContext'
+import styled from 'styled-components'
 
-function Popular({ rendered }) {
-
-    const { popularAnime, isSearch, searchResults } = useGlobalContext();
+function Airing({ rendered }) {
+    const { airingAnime, isSearch, searchResults } = useGlobalContext()
 
     const conditionalRender = () => {
-        if (!isSearch && rendered === 'popular') {
-            return popularAnime?.map((anime) => {
-                // console.log(anime)
-                return (<Link to={`/anime/${anime.mal_id}`} key={anime.mal_id}>
+        if (!isSearch && rendered === 'airing') {
+            return airingAnime?.map((anime) => {
+                return <Link to={`/anime/${anime.mal_id}`} key={anime.mal_id}>
                     <img src={anime.images.jpg.large_image_url} alt="" />
-                </Link>)
+                </Link>
             })
         } else {
             return searchResults?.map((anime) => {
@@ -26,22 +24,21 @@ function Popular({ rendered }) {
 
     return (
         <PopularStyled>
-            <div className='popularAnime'>
+            <div className="airing-anime">
                 {conditionalRender()}
             </div>
         </PopularStyled>
-
     )
 }
 
 const PopularStyled = styled.div`
     display: flex;
-    .popularAnime{
+    .airing-anime{
         margin-top: 2rem;
         padding-top: 2rem;
         padding-bottom: 2rem;
         padding-left: 5rem;
-        padding-right: 5rem; //
+        padding-right: 0;
         width: 100%;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -53,7 +50,7 @@ const PopularStyled = styled.div`
             border-radius: 7px;
             border: 5px solid #e5e7eb;
         }
-        img{
+        a img{
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -62,4 +59,4 @@ const PopularStyled = styled.div`
     }
 `;
 
-export default Popular
+export default Airing

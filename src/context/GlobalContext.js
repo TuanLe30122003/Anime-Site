@@ -27,6 +27,8 @@ const reducer = (state, action) => {
             return { ...state, upcomingAnime: action.payload, loading: false };
         case GET_AIRING_ANIME:
             return { ...state, airingAnime: action.payload, loading: false };
+        case GET_PICTURES:
+            return { ...state, pictures: action.payload, loading: false };
         default:
             return state;
     }
@@ -98,6 +100,13 @@ export const GlobalContextProvider = ({ children }) => {
         const response = await fetch(`https://api.jikan.moe/v4/anime?q=${anime}&order_by=popularity&sort=asc&sfw`);
         const data = await response.json();
         dispatch({ type: SEARCH, payload: data.data })
+    }
+
+    const getAnimePictures = async (id) => {
+        dispatch({ type: LOADING });
+        const response = await fetch(`https://api.jikan.moe/v4/characters/${id}/pictures`);
+        const data = await response.json();
+        dispatch({ type: GET_PICTURES, payload: data.data })
     }
 
     //initial render
