@@ -124,6 +124,7 @@ export const GlobalContextProvider = ({ children }) => {
             getAiringAnime,
             getPopularAnime,
             getUpcomingAnime,
+            getAnimePictures,
         }}>
             {children}
         </GlobalContext.Provider>
